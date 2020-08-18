@@ -18,7 +18,6 @@ import stephen.herokuapp.sample.api.server.worker.UserWorker;
 
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -47,9 +46,9 @@ class UserControllerTest {
         Mockito.when(userWorker.getUsers()).thenReturn(expectedResult);
 
         MvcResult mvcResult = mockMvc.perform(
-                        get("/api/v1.0/user/users")
-                                .contentType(String.valueOf(MediaType.APPLICATION_JSON))
-                )
+                get("/api/v1.0/user/users")
+                        .contentType(String.valueOf(MediaType.APPLICATION_JSON))
+        )
                 .andExpect(status().isOk())
                 .andReturn();
 

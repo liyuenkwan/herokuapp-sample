@@ -30,16 +30,12 @@ public class UserWorker {
     private RestTemplate restTemplate;
 
     public List<UserDTO> getUsers() {
-        System.out.println();
-
         String city = "London";
         List<UserDTO> usersLiveInCity = getUsersLiveInCity(city);
         List<UserDTO> usersAreNearBy = getUsersAreNearBy(londonLongitude, londonLatitude, distanceFromLondon);
 
-        List<UserDTO> collect = Stream.concat(usersLiveInCity.stream(), usersAreNearBy.stream())
-                .distinct()
+        return Stream.concat(usersLiveInCity.stream(), usersAreNearBy.stream())
                 .collect(Collectors.toList());
-        return collect;
     }
 
     private List<UserDTO> getUsersAreNearBy(Double longitude, Double latitude, Double distance) {
@@ -47,8 +43,8 @@ public class UserWorker {
 
         return Arrays.stream(userDTOs)
                 .filter(userDTO -> {
-                    return Math.abs(userDTO.getLatitude() - latitude) < distance
-                            && Math.abs(userDTO.getLongitude() - longitude) < distance;
+                    return Math.abs(userDTO.getLatitude() - latitude) <= distance
+                            && Math.abs(userDTO.getLongitude() - longitude) <= distance;
                 })
                 .collect(Collectors.toList());
     }

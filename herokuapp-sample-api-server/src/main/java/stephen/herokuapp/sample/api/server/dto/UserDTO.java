@@ -3,7 +3,6 @@ package stephen.herokuapp.sample.api.server.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-@EqualsAndHashCode
 @Builder
 @Getter
 @Setter
@@ -12,7 +11,6 @@ import lombok.*;
 @AllArgsConstructor
 public class UserDTO {
 
-    @EqualsAndHashCode.Include
     private Long id;
     @JsonProperty("first_name")
     private String firstName;
