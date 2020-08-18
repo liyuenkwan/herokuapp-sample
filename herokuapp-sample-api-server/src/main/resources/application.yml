@@ -1,0 +1,5 @@
+herokuapp:
+  uri: http://bpdts-test-app-v4.herokuapp.com/
+  londonLongitude: 0.1278
+  londonLatitude: 51.5074
+  distanceFromLondon: 1
